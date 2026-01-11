@@ -72,18 +72,18 @@ export default function MainNav({ className }: { className?: string }) {
 			<div className="flex flex-1 justify-end">
 				<div className="flex flex-row gap-5">
 					{mounted && theme === "dark" ? (
-						<Button variant="outline" onClick={() => setTheme("light")}>
+						<Button variant="nav" onClick={() => setTheme("light")}>
 							<Sun />
 						</Button>
 					) : (
-						<Button variant="outline" onClick={() => setTheme("dark")}>
+						<Button variant="nav" onClick={() => setTheme("dark")}>
 							<Moon />
 						</Button>
 					)}
 
 					<DropdownMenu modal={false}>
 						<DropdownMenuTrigger asChild>
-							<Button variant="outline">
+							<Button variant="nav">
 								<User />
 							</Button>
 						</DropdownMenuTrigger>
