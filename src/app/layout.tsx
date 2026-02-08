@@ -19,7 +19,7 @@ export default function RootLayout({
 				<Providers>
 					<MainNav className="pb-3 pt-3 px-5 bg-primary" />
 					<MobileNav className="mb-5 mt-3 mx-5 bg-primary" />
-					<div className="mx-5">{children}</div>
+					<div className="m-3">{children}</div>
 					<Toaster />
 				</Providers>
 			</body>
