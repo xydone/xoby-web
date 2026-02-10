@@ -1,10 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios, { type AxiosError } from "axios";
 import { Goal, LogOut, Settings } from "lucide-react";
 import Link from "next/link";
 import { type Dispatch, type SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useSignIn, useSignOut, useSignUp } from "@/api/auth";
 import { handleSignOut, type User, useUserContext } from "@/app/context";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -21,7 +21,6 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import { useSignIn, useSignOut, useSignUp } from "@/lib/services/auth";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
 import { Input } from "./input";

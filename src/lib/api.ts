@@ -1,8 +1,8 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from "axios";
 import { useEffect } from "react";
+import { useRefresh } from "@/api/auth";
 import { handleSignOut, useUserContext } from "@/app/context";
 import { queryClient } from "@/app/providers";
-import { useRefresh } from "./services/auth";
 
 const axiosInstance = axios.create({});
 

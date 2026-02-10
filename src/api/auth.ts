@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useUserContext } from "@/app/context";
-// import { axiosInstance } from "../api";
+
 export const useSignUp = () => {
 	return useMutation({
 		mutationFn: async ({
