@@ -59,9 +59,15 @@ export default {
 				"0%, 100%": { filter: "brightness(1)" },
 				"50%": { filter: "brightness(1.4)" },
 			},
+
+			marquee: {
+				"0%": { transform: "translateX(0%)" },
+				"100%": { transform: "translateX(-50%)" },
+			},
 		},
 		animation: {
 			subtlePulse: "subtlePulse 1.5s linear infinite",
+			marquee: "marquee 30s linear infinite",
 		},
 	},
 	plugins: [],

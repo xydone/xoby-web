@@ -20,34 +20,33 @@ export function ActivityCard({
 	coverUrl,
 	createdAt,
 }: ActivityProps) {
-	// TODO: parse it into a time ago format
 	const time = createdAt;
 	return (
 		<div>
-			<Card className="py-0 flex flex-row w-full max-w-md overflow-hidden">
+			<Card className="py-0 flex flex-row w-full overflow-hidden h-24">
 				<div className="w-1/4 shrink-0 relative bg-muted">
 					{coverUrl ? (
 						<Image
 							src={coverUrl}
-							alt={`${title} cover art`}
+							alt={title}
 							fill
 							className="object-cover"
-							sizes="100px"
+							sizes="80px"
 						/>
 					) : (
-						<div className="flex items-center justify-center h-full text-xs text-muted-foreground">
+						<div className="flex items-center justify-center h-full text-[10px] text-muted-foreground">
 							No Image
 						</div>
 					)}
 				</div>
-				<div className="w-3/4 flex flex-col">
-					<CardHeader className="p-4 pb-2">
-						<CardTitle className="text-base">{title}</CardTitle>
-						<CardDescription className="text-xs">{time}</CardDescription>
+				<div className="w-3/4 flex flex-col justify-center">
+					<CardHeader className="p-3 pb-0">
+						<CardTitle className="text-sm truncate">{title}</CardTitle>
+						<CardDescription className="text-[10px]">{time}</CardDescription>
 					</CardHeader>
 
-					<CardContent className="p-4 pt-0 flex-grow">
-						<p className="text-sm text-muted-foreground">
+					<CardContent className="p-3 pt-1">
+						<p className="text-xs text-muted-foreground truncate">
 							{`${username} read chapter 1`}
 						</p>
 					</CardContent>
