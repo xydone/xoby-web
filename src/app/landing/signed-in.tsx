@@ -28,7 +28,7 @@ export default function SignedIn() {
 				</div>
 			</section>
 
-			<footer className="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-t py-4 overflow-hidden">
+			<footer className="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border border-text-200 py-4 overflow-hidden">
 				<div className="relative flex">
 					<div className="flex flex-row gap-4 animate-marquee whitespace-nowrap hover:[animation-play-state:paused]">
 						{activities.map((activity) => (

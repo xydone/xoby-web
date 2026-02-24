@@ -1,11 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Goal, LogOut, Settings } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 import Link from "next/link";
 import { type Dispatch, type SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useSignIn, useSignOut, useSignUp } from "@/api/auth";
 import { handleSignOut, type User, useUserContext } from "@/app/context";
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
 	DropdownMenuContent,
@@ -21,9 +22,8 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { Button } from "./button";
-import { Input } from "./input";
 
 export const SignInFormSchema = z.object({
 	username: z.string().nonempty(),
@@ -298,10 +298,6 @@ export function ProfileMenu({
 				Profile
 			</DropdownMenuLabel>
 			<DropdownMenuSeparator />
-			<DropdownMenuItem>
-				<Goal />
-				Goals
-			</DropdownMenuItem>
 			<DropdownMenuItem asChild>
 				<Link className="inherit" href="/settings">
 					<Settings />

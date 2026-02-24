@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { SignInForm } from "@/components/nav/nav-common";
 import { Button } from "@/components/ui/button";
-import { SignInForm } from "@/components/ui/nav-common";
 export default function SignedIn() {
 	const [isSignInOpen, setIsSignInOpen] = useState(false);
 	return (
@@ -14,4 +14,3 @@ export default function SignedIn() {
 		</div>
 	);
 }
-

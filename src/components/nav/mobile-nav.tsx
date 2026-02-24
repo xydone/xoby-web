@@ -13,6 +13,8 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import { useUserContext } from "@/app/context";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
 	Drawer,
 	DrawerContent,
@@ -21,22 +23,20 @@ import {
 	DrawerTrigger,
 } from "@/components/ui/drawer";
 import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/components/ui/popover";
-import { navLinksConfig } from "@/config/nav-links";
-import { cn } from "@/lib/utils";
-import { Button } from "./button";
-import { Dialog, DialogContent, DialogTitle } from "./dialog";
-import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
-} from "./dropdown-menu";
+} from "@/components/ui/dropdown-menu";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import { Separator } from "@/components/ui/separator";
+import { navLinksConfig } from "@/config/nav-links";
+import { cn } from "@/lib/utils";
 import { ProfileMenu, SignInForm, SignUpForm } from "./nav-common";
-import { Separator } from "./separator";
 export default function MobileNav({ className }: { className?: string }) {
 	const { theme, setTheme } = useTheme();
 	const [isSignInOpen, setSignInOpen] = useState(false);
@@ -45,7 +45,9 @@ export default function MobileNav({ className }: { className?: string }) {
 	const [mounted, setMounted] = useState(false);
 	useEffect(() => setMounted(true), []);
 	return (
-		<nav className={cn("flex flex-row gap-5 md:hidden", className)}>
+		<nav
+			className={cn("text-background flex flex-row gap-5 md:hidden", className)}
+		>
 			<Drawer>
 				<DrawerTrigger className="mr-auto" asChild>
 					<Button variant="outline">

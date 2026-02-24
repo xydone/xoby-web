@@ -27,7 +27,7 @@ export function RecentLogged() {
 
 	if (!data || data.length === 0) {
 		return (
-			<div className="flex flex-col items-center justify-center py-12 border border-dashed rounded-lg bg-muted/10">
+			<div className="flex flex-col items-center justify-center py-12 border border-text-200 border-dashed rounded-lg bg-muted/10">
 				<p className="text-sm text-muted-foreground">
 					No media currently in progress.
 				</p>

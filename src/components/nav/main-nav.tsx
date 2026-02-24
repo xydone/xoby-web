@@ -6,6 +6,12 @@ import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import { useUserContext } from "@/app/context";
 import { Button } from "@/components/ui/button";
 import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+} from "@/components/ui/dialog";
+import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
@@ -19,7 +25,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { navLinksConfig } from "@/config/nav-links";
 import { cn } from "@/lib/utils";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./dialog";
 import { ProfileMenu, SignInForm, SignUpForm } from "./nav-common";
 
 export default function MainNav({ className }: { className?: string }) {
