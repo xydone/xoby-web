@@ -19,7 +19,10 @@ export function RecentLogged() {
 		return (
 			<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 				{[1, 2, 3].map((i) => (
-					<Skeleton key={i} className="h-[180px] w-full rounded-xl" />
+					<Skeleton
+						key={i}
+						className="h-[180px] w-full rounded-xl bg-background"
+					/>
 				))}
 			</div>
 		);

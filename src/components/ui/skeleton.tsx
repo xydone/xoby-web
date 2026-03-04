@@ -7,11 +7,7 @@ function Skeleton({
 }: React.HTMLAttributes<HTMLDivElement> & { notRounded?: boolean }) {
 	return (
 		<div
-			className={cn(
-				"animate-pulse bg-accent",
-				!notRounded && "rounded-md",
-				className,
-			)}
+			className={cn("animate-pulse", !notRounded && "rounded-md", className)}
 			{...props}
 		/>
 	);
