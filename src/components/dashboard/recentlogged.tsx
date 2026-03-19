@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { BookOpen, Clock, PlayCircle } from "lucide-react";
+import { Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
 	Card,
@@ -10,10 +10,10 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useGetInProgressMedia } from "@/hooks/queries/use-profile-in-progress";
+import { useGetMediaByStatus } from "@/hooks/queries/use-profile-get-status";
 
 export function RecentLogged() {
-	const { data, isLoading } = useGetInProgressMedia();
+	const { data, isLoading } = useGetMediaByStatus("in_progress");
 
 	if (isLoading) {
 		return (

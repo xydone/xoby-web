@@ -14,7 +14,7 @@ export const useSignUp = () => {
 			password: string;
 		}) => {
 			const response = await axios.post(
-				`${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
+				`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/register`,
 				{ display_name, username, password },
 			);
 			return response.data;
@@ -27,7 +27,7 @@ export const useSignOut = () => {
 	return useMutation({
 		mutationFn: async () => {
 			const response = await axios.post(
-				`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
+				`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/logout`,
 				{
 					refresh_token: user.refreshToken,
 				},
@@ -41,7 +41,7 @@ export const useRefresh = () => {
 	return useMutation({
 		mutationFn: async ({ refreshToken }: { refreshToken: string }) => {
 			const response = await axios.post<{ access_token: string }>(
-				`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+				`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/refresh`,
 				{ refresh_token: refreshToken },
 			);
 
@@ -60,7 +60,7 @@ export const useSignIn = () => {
 			password: string;
 		}) => {
 			const response = await axios.post(
-				`${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+				`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/login`,
 				{
 					username: username,
 					password: password,
