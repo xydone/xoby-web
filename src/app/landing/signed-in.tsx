@@ -49,7 +49,7 @@ export default function SignedIn() {
 												{ addSuffix: true },
 											)}
 											summary={getActivitySummary(activity.data)}
-											coverUrl={activity.image_path ?? undefined}
+											coverUrl={activity.image_url ?? undefined}
 										/>
 									</div>
 								))}

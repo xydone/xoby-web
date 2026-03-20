@@ -35,7 +35,7 @@ export interface ActivityEntry {
 	episode_id: string | null;
 	media_title: string;
 	media_type: MediaType;
-	image_path: string | null;
+	image_url: string | null;
 	image_type: ImageType | null;
 	data: ActivityData;
 }
