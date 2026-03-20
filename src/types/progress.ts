@@ -1,4 +1,8 @@
-export type ProgressStatus = "in_progress" | "completed" | "pending" | "failed";
+export type ProgressStatus =
+	| "in_progress"
+	| "completed"
+	| "planned"
+	| "dropped";
 export type ProgressUnit = "quantity" | "percentage";
 export type MediaType = "manga" | "book" | "movie";
 

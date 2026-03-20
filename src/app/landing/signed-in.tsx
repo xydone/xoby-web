@@ -42,7 +42,7 @@ export default function SignedIn() {
 										className="w-[300px] shrink-0"
 									>
 										<ActivityCard
-											username={activity.user_id}
+											username={activity.user_display_name}
 											title={activity.media_title}
 											createdAt={formatDistanceToNow(
 												new Date(activity.created_at / 1000),
@@ -63,12 +63,15 @@ export default function SignedIn() {
 }
 
 function getActivitySummary(data: ActivityData): string {
-	switch (data.type) {
-		case "progress":
-			return `${data.progress_value} ${data.progress_unit} — ${data.status}`;
-		case "rating":
-			return `Rated ${data.score}`;
-		case "review":
-			return data.title ?? "Untitled review";
+	if ("progress" in data) {
+		const { status, progress_value, progress_unit } = data.progress;
+		if (status === "completed") return "Completed";
+		if (status === "planned") return "Planned";
+		if (progress_unit === "percentage")
+			return `${progress_value * 100}% — ${status}`;
+		return `${progress_value} — ${status}`;
 	}
+	if ("rating" in data) return `Rated ${data.rating.score}`;
+	if ("review" in data) return data.review.title ?? "Untitled review";
+	throw new Error(`Unknown activity data: ${JSON.stringify(data)}`);
 }

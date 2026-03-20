@@ -16,25 +16,19 @@ export interface ProfileSummary {
 
 export type ActivityData =
 	| {
-			type: "progress";
-			status: ProgressStatus;
-			progress_value: number;
-			progress_unit: ProgressUnit;
+			progress: {
+				status: ProgressStatus;
+				progress_value: number;
+				progress_unit: ProgressUnit;
+			};
 	  }
-	| {
-			type: "rating";
-			score: number;
-	  }
-	| {
-			type: "review";
-			title: string | null;
-			content: string;
-			is_spoiler: boolean;
-	  };
+	| { rating: { score: number } }
+	| { review: { title: string | null; content: string; is_spoiler: boolean } };
 
 export interface ActivityEntry {
 	id: string;
 	user_id: string;
+	user_display_name: string;
 	created_at: number;
 	media_id: string | null;
 	season_id: string | null;
