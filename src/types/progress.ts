@@ -1,4 +1,5 @@
 export type ProgressStatus = "in_progress" | "completed" | "pending" | "failed";
+export type ProgressUnit = "quantity" | "percentage";
 export type MediaType = "manga" | "book" | "movie";
 
 export interface ProgressEntry {

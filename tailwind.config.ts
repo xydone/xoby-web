@@ -100,7 +100,7 @@ export default {
 		},
 		animation: {
 			subtlePulse: "subtlePulse 1.5s linear infinite",
-			marquee: "marquee 30s linear infinite",
+			marquee: "marquee 80s linear infinite",
 		},
 
 		fontFamily: {

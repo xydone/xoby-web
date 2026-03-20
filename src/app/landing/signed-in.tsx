@@ -1,14 +1,13 @@
+import { formatDistanceToNow } from "date-fns";
 import { ActivityCard } from "@/components/dashboard/activitycard";
 import { RecentLogged } from "@/components/dashboard/recentlogged";
 import { StatsOverview } from "@/components/dashboard/statsoverviewcard";
+import { useGetActivity } from "@/hooks/queries/use-profile-get-activity";
+import type { ActivityData } from "@/types/profile";
 
 export default function SignedIn() {
-	const activities = Array.from({ length: 8 }).map((_, index) => ({
-		id: index,
-		username: `User ${index + 1}`,
-		title: `Example Title ${index + 1}`,
-		createdAt: "2h ago",
-	}));
+	const { data: activities = [], isLoading } = useGetActivity();
+
 	return (
 		<main className="relative flex flex-col min-h-screen w-full bg-background">
 			<section className="flex-1 p-6 md:p-10 space-y-8 pb-32">
@@ -31,19 +30,45 @@ export default function SignedIn() {
 			<footer className="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border border-text-200 py-4 overflow-hidden">
 				<div className="relative flex">
 					<div className="flex flex-row gap-4 animate-marquee whitespace-nowrap hover:[animation-play-state:paused]">
-						{activities.map((activity) => (
-							<div key={`set1-${activity.id}`} className="w-[300px] shrink-0">
-								<ActivityCard {...activity} />
+						{isLoading ? (
+							<div className="px-6 text-sm text-muted-foreground">
+								Loading activity...
 							</div>
-						))}
-						{activities.map((activity) => (
-							<div key={`set2-${activity.id}`} className="w-[300px] shrink-0">
-								<ActivityCard {...activity} />
+						) : (
+							<div className="flex flex-row gap-4 animate-marquee whitespace-nowrap hover:[animation-play-state:paused]">
+								{[...activities, ...activities].map((activity, i) => (
+									<div
+										key={`${activity.id}-${i}`}
+										className="w-[300px] shrink-0"
+									>
+										<ActivityCard
+											username={activity.user_id}
+											title={activity.media_title}
+											createdAt={formatDistanceToNow(
+												new Date(activity.created_at / 1000),
+												{ addSuffix: true },
+											)}
+											summary={getActivitySummary(activity.data)}
+											coverUrl={activity.image_path ?? undefined}
+										/>
+									</div>
+								))}
 							</div>
-						))}
+						)}
 					</div>
 				</div>
 			</footer>
 		</main>
 	);
+}
+
+function getActivitySummary(data: ActivityData): string {
+	switch (data.type) {
+		case "progress":
+			return `${data.progress_value} ${data.progress_unit} — ${data.status}`;
+		case "rating":
+			return `Rated ${data.score}`;
+		case "review":
+			return data.title ?? "Untitled review";
+	}
 }

@@ -9,9 +9,10 @@ import {
 
 interface ActivityProps {
 	username: string;
-	title: string;
+	title?: string;
 	coverUrl?: string;
 	createdAt: string;
+	summary: string;
 }
 
 export function ActivityCard({
@@ -19,8 +20,8 @@ export function ActivityCard({
 	title,
 	coverUrl,
 	createdAt,
+	summary,
 }: ActivityProps) {
-	const time = createdAt;
 	return (
 		<div>
 			<Card className="py-0 flex flex-row w-full overflow-hidden h-24">
@@ -28,7 +29,7 @@ export function ActivityCard({
 					{coverUrl ? (
 						<Image
 							src={coverUrl}
-							alt={title}
+							alt={"Cover Image"}
 							fill
 							className="object-cover"
 							sizes="80px"
@@ -42,12 +43,13 @@ export function ActivityCard({
 				<div className="w-3/4 flex flex-col justify-center">
 					<CardHeader className="p-3 pb-0">
 						<CardTitle className="text-sm truncate">{title}</CardTitle>
-						<CardDescription className="text-[10px]">{time}</CardDescription>
+						<CardDescription className="text-[10px]">
+							{createdAt}
+						</CardDescription>
 					</CardHeader>
-
 					<CardContent className="p-3 pt-1">
 						<p className="text-xs text-muted-foreground truncate">
-							{`${username} read chapter 1`}
+							{username} · {summary}
 						</p>
 					</CardContent>
 				</div>
