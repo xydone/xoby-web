@@ -48,8 +48,11 @@ export function ActivityCard({
 						</CardDescription>
 					</CardHeader>
 					<CardContent className="p-3 pt-1">
-						<p className="text-xs text-muted-foreground truncate">
-							{username} · {summary}
+						<p className="text-xs text-muted-foreground">
+							<span className="block truncate">{username}</span>
+							<span className="block text-[11px] leading-tight line-clamp-2">
+								{summary}
+							</span>
 						</p>
 					</CardContent>
 				</div>

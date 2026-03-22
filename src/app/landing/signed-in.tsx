@@ -3,7 +3,7 @@ import { ActivityCard } from "@/components/dashboard/activitycard";
 import { RecentLogged } from "@/components/dashboard/recentlogged";
 import { StatsOverview } from "@/components/dashboard/statsoverviewcard";
 import { useGetActivity } from "@/hooks/queries/use-profile-get-activity";
-import type { ActivityData } from "@/types/profile";
+import type { ActivityEntry } from "@/types/profile";
 
 export default function SignedIn() {
 	const { data: activities = [], isLoading } = useGetActivity();
@@ -48,7 +48,7 @@ export default function SignedIn() {
 												new Date(activity.created_at / 1000),
 												{ addSuffix: true },
 											)}
-											summary={getActivitySummary(activity.data)}
+											summary={getActivitySummary(activity)}
 											coverUrl={activity.image_url ?? undefined}
 										/>
 									</div>
@@ -62,16 +62,35 @@ export default function SignedIn() {
 	);
 }
 
-function getActivitySummary(data: ActivityData): string {
-	if ("progress" in data) {
-		const { status, progress_value, progress_unit } = data.progress;
-		if (status === "completed") return "Completed";
-		if (status === "planned") return "Planned";
-		if (progress_unit === "percentage")
-			return `${progress_value * 100}% — ${status}`;
-		return `${progress_value} — ${status}`;
+export function getActivitySummary(
+	entry: Pick<ActivityEntry, "progress" | "rating" | "review">,
+): string {
+	const summaries: string[] = [];
+
+	if (entry.progress) {
+		const { status, progress_value, progress_unit } = entry.progress;
+		if (status === "completed") {
+			summaries.push("Completed");
+		} else if (status === "planned") {
+			summaries.push("Planned");
+		} else {
+			const displayValue =
+				progress_unit === "percentage"
+					? `${Math.round(progress_value * 100)}%`
+					: progress_value;
+			summaries.push(`${displayValue} — ${status}`);
+		}
 	}
-	if ("rating" in data) return `Rated ${data.rating.score}`;
-	if ("review" in data) return data.review.title ?? "Untitled review";
-	throw new Error(`Unknown activity data: ${JSON.stringify(data)}`);
+
+	if (entry.rating) {
+		summaries.push(`Rated ${entry.rating.score}/10`);
+	}
+
+	if (entry.review) {
+		summaries.push(entry.review.title ?? "Reviewed");
+	}
+
+	if (summaries.length === 0) return "Updated activity";
+
+	return summaries.join(" • ");
 }

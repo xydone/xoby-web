@@ -37,5 +37,17 @@ export interface ActivityEntry {
 	media_type: MediaType;
 	image_url: string | null;
 	image_type: ImageType | null;
-	data: ActivityData;
+	progress?: {
+		status: ProgressStatus;
+		progress_value: number;
+		progress_unit: ProgressUnit;
+	} | null;
+	rating?: {
+		score: number;
+	} | null;
+	review?: {
+		title: string | null;
+		content: string;
+		is_spoiler: boolean;
+	} | null;
 }
